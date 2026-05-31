@@ -4,9 +4,10 @@ Global Git configuration with machine-local identity injection.
 
 ## Stow
 
+With `.stowrc` configured (see root README), run from the repo root:
+
 ```bash
-cd ~/dotfiles
-stow --target="$HOME" git/
+stow git
 ```
 
 Creates symlinks:
@@ -18,7 +19,7 @@ Creates symlinks:
 Identity (name + email) lives in `~/.gitconfig.local`, which is gitignored and never committed. Run once per machine:
 
 ```bash
-bash ~/dotfiles/scripts/setup-git.sh
+bash scripts/setup-git.sh
 ```
 
 ## GitHub authentication

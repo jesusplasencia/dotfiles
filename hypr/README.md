@@ -4,35 +4,38 @@ Hyprland window manager configuration — keybinds, autostart, wallpaper, and mo
 
 ## Stow
 
+With `.stowrc` configured (see root README), run from the repo root:
+
 ```bash
-cd ~/dotfiles
-stow --target="$HOME" hypr/
+stow hypr
 ```
 
 Creates symlinks:
 - `~/.config/hypr/hyprland.conf` → `hypr/.config/hypr/hyprland.conf`
-- `~/.config/hypr/hyprpaper.conf` → `hypr/.config/hypr/hyprpaper.conf`
 - `~/.config/hypr/set-wallpaper.sh` → `hypr/.config/hypr/set-wallpaper.sh`
+
+> `hyprpaper.conf` and `monitors.conf` are machine-specific and not stowed — copy from their `.example` files instead (see below).
 
 ## Monitor layout (machine-specific)
 
 Monitor config is not committed — copy the example and edit for your displays:
 
 ```bash
-cp ~/.config/hypr/monitors.conf.example ~/.config/hypr/monitors.conf
-nvim ~/.config/hypr/monitors.conf
+cp hypr/.config/hypr/monitors.conf.example hypr/.config/hypr/monitors.conf
+nvim hypr/.config/hypr/monitors.conf
 ```
 
 ## Wallpaper
 
-Wallpapers are configured in `hyprpaper.conf`. Place images anywhere (recommended: `~/Pictures/wallpapers/`) and update the paths:
+`hyprpaper.conf` is not committed (machine-specific — hyprpaper cannot expand `$HOME`).
+Copy the example and replace `YOUR_USER` with your username:
 
-```ini
-preload = /home/jplasencia/Pictures/wallpapers/Blue.jpg
-
-wallpaper = DP-1,/home/jplasencia/Pictures/wallpapers/Blue.jpg
-wallpaper = HDMI-A-1,/home/jplasencia/Pictures/wallpapers/Blue.jpg
+```bash
+cp hypr/.config/hypr/hyprpaper.conf.example hypr/.config/hypr/hyprpaper.conf
+nvim hypr/.config/hypr/hyprpaper.conf
 ```
+
+Place wallpaper images at `~/Pictures/wallpapers/` before starting hyprpaper.
 
 Apply changes live without rebooting:
 

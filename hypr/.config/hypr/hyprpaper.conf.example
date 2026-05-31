@@ -1,0 +1,9 @@
+# Copy to hyprpaper.conf and replace YOUR_USER with your actual username.
+# hyprpaper does not expand $HOME or shell variables — paths must be absolute.
+# Recommended: place wallpapers in ~/Pictures/wallpapers/
+
+preload = /home/YOUR_USER/Pictures/wallpapers/Blue.jpg
+preload = /home/YOUR_USER/Pictures/wallpapers/Red.jpg
+
+wallpaper = DP-1,/home/YOUR_USER/Pictures/wallpapers/Blue.jpg
+wallpaper = HDMI-A-1,/home/YOUR_USER/Pictures/wallpapers/Red.jpg
