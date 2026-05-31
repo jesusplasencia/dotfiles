@@ -36,15 +36,15 @@ Before producing any output, ask yourself:
 - Never suggest editing symlinked files in `~/` — always edit the source inside the repo.
 
 ### Shell & Environment
-- Default shell is **zsh**. Do not suggest bash-only constructs without a zsh equivalent.
-- No `export` statements for secrets or tokens in `.zshrc` — use a `.zshenv.local` (gitignored) pattern.
-- Keep `.zshrc` readable: group by section (PATH, aliases, functions, completions, prompt).
-- Never add `eval "$(something)"` without a comment explaining what it does.
+- Default shell is **fish**. Do not suggest bash/zsh-only constructs without a fish equivalent.
+- No `set -x` statements for secrets or tokens in `config.fish` — use a sourced local file (e.g. `~/.config/fish/conf.d/local.fish`, gitignored).
+- Keep `config.fish` readable: group by section (PATH, aliases, functions, completions, prompt).
+- Never add `source` or `eval` patterns without a comment explaining what it does.
 
 ### Secrets & Privacy
 - **`.gitignore` is the first file touched** when adding any new package — check it before committing.
 - Never commit tokens, API keys, SSH private keys, or machine-specific secrets.
-- Files with credentials belong in `.zshenv.local`, `~/.aws/credentials` (outside the repo), or a secrets manager — never in dotfiles.
+- Files with credentials belong in `~/.config/fish/conf.d/local.fish` (gitignored), `~/.aws/credentials` (outside the repo), or a secrets manager — never in dotfiles.
 - AWS CLI config (`~/.aws/config`) is safe to version; `~/.aws/credentials` is not.
 
 ### Idempotency
@@ -81,9 +81,10 @@ Before producing any output, ask yourself:
 ├── tmux/                      ← Terminal multiplexer
 │   └── .tmux.conf
 │
-├── zsh/                       ← Shell config
-│   ├── .zshrc
-│   └── .zshenv
+├── fish/                      ← Shell config
+│   └── .config/fish/
+│       ├── config.fish
+│       └── conf.d/
 │
 ├── git/                       ← Git globals
 │   ├── .gitconfig
@@ -108,14 +109,14 @@ Before producing any output, ask yourself:
 | Alacritty       | GPU-accelerated terminal             | `alacritty/`    |
 | tmux            | Terminal multiplexer                 | `tmux/`         |
 | Neovim          | Editor (LazyVim starter)             | `nvim/`         |
-| zsh + starship  | Shell + prompt                       | `zsh/`          |
+| fish + starship | Shell + prompt                       | `fish/`         |
 | GNU Stow        | Symlink manager                      | —               |
-| fzf             | Fuzzy finder (shell + vim)           | `zsh/`          |
+| fzf             | Fuzzy finder (shell + vim)           | `fish/`         |
 | ripgrep         | Fast grep (used by Neovim/fzf)       | —               |
-| bat             | `cat` with syntax highlighting       | `zsh/` (alias)  |
-| yazi            | Terminal file manager                | `zsh/` (alias)  |
+| bat             | `cat` with syntax highlighting       | `fish/` (alias) |
+| yazi            | Terminal file manager                | `fish/` (alias) |
 | AWS CLI v2      | AWS access                           | `aws/`          |
-| Terraform       | IaC (shared infra)                   | `zsh/` (PATH)   |
+| Terraform       | IaC (shared infra)                   | `fish/` (PATH)  |
 | tflint          | Terraform linter                     | —               |
 | tfsec           | Terraform security scanner           | —               |
 | infracost       | Cloud cost estimation                | —               |
@@ -157,7 +158,7 @@ The bootstrap script must follow this order:
 3. Install language runtimes (Node.js via `nvm`, etc.).
 4. Install cloud tools (AWS CLI, Terraform, tflint, tfsec, infracost).
 5. Run `stow` for all packages.
-6. Post-install messages: what to do manually (e.g., set zsh as default shell, configure AWS SSO).
+6. Post-install messages: what to do manually (e.g., set fish as default shell, configure AWS SSO).
 
 Always print a `[OK]`, `[SKIP]`, or `[ERROR]` prefix for each step.
 
@@ -185,7 +186,7 @@ Always print a `[OK]`, `[SKIP]`, or `[ERROR]` prefix for each step.
 
 ## Useful Aliases to Maintain
 
-```zsh
+```fish
 # Dotfiles management
 alias dotfiles='cd ~/dotfiles'
 alias stowit='cd ~/dotfiles && stow */'      # restow everything
@@ -205,7 +206,7 @@ alias tfd='terraform destroy'
 alias awsid='aws sts get-caller-identity'    # quick account check
 
 # Reload shell
-alias reload='source ~/.zshrc'
+alias reload='source ~/.config/fish/config.fish'
 ```
 
 ---
