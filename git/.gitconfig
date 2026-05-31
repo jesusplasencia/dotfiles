@@ -1,0 +1,52 @@
+# Identity lives in ~/.gitconfig.local (gitignored, never committed).
+# Run scripts/setup-git.sh once per machine to create it.
+[include]
+    path = ~/.gitconfig.local
+
+[core]
+    editor     = nvim
+    excludesfile = ~/.gitignore_global
+    autocrlf   = input
+
+[init]
+    defaultBranch = main
+
+[pull]
+    rebase = true
+
+[rebase]
+    autoStash = true
+
+[push]
+    # "current" pushes the current branch to a same-named remote branch.
+    # Combined with the `p` alias below, you never type the branch name.
+    default = current
+
+[alias]
+    s   = status -sb
+    a   = add
+    ap  = add -p
+    c   = commit
+    cm  = commit -m
+    ca  = commit --amend --no-edit
+    p   = push origin HEAD
+    pf  = push origin HEAD --force-with-lease
+    l   = log --oneline --graph --decorate -20
+    la  = log --oneline --graph --decorate --all
+    d   = diff
+    ds  = diff --staged
+    co  = checkout
+    sw  = switch
+    br  = branch -vv
+    undo = reset HEAD~1 --mixed
+
+[color]
+    ui = auto
+
+[credential "https://github.com"]
+    helper =
+    helper = !/usr/bin/gh auth git-credential
+
+[credential "https://gist.github.com"]
+    helper =
+    helper = !/usr/bin/gh auth git-credential
