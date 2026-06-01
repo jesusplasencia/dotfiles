@@ -47,7 +47,7 @@ bash scripts/setup-git.sh
 ### 5. Stow packages
 
 ```bash
-stow alacritty git hypr
+stow alacritty fish git hypr nvim
 # or stow */ to stow everything at once
 ```
 
@@ -63,11 +63,13 @@ stow alacritty git hypr
 
 ## Packages
 
-| Package      | What it configures                        |
-|--------------|-------------------------------------------|
-| `alacritty/` | Terminal — font, opacity, fish shell      |
-| `git/`       | Global gitconfig + aliases                |
-| `hypr/`      | Hyprland, hyprpaper, keybinds, autostart  |
+| Package      | What it configures                                    |
+|--------------|-------------------------------------------------------|
+| `alacritty/` | Terminal — font, opacity, fish shell                  |
+| `fish/`      | Fish shell — aliases, PATH, starship prompt           |
+| `git/`       | Global gitconfig + aliases                            |
+| `hypr/`      | Hyprland, hyprpaper, keybinds, autostart              |
+| `nvim/`      | Neovim — LazyVim bootstrap, colorcolumn, tokyonight   |
 
 ---
 

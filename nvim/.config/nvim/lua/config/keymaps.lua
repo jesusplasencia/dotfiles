@@ -1,0 +1,1 @@
+-- LazyVim sets sane defaults. Add personal keymaps here only when needed.
