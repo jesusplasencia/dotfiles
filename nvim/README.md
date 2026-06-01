@@ -16,7 +16,7 @@ Neovim configuration based on [LazyVim](https://www.lazyvim.org/).
 
 - **Neovim ≥ 0.9** — `yay -S neovim`
 - **git** — required by lazy.nvim to fetch plugins
-- **A Nerd Font** — for icons (e.g. JetBrainsMono Nerd Font, already set in alacritty config)
+- **A Nerd Font** — for icons (e.g. JetBrainsMono Nerd Font)
 - **ripgrep** — `yay -S ripgrep` (used by LazyVim's fuzzy search)
 - **lazygit** — `yay -S lazygit` (used by LazyVim's git UI, optional)
 
@@ -31,7 +31,8 @@ This creates the symlink `~/.config/nvim → ~/dotfiles/nvim/.config/nvim`.
 
 ## First launch
 
-Open `nvim` and lazy.nvim will auto-install all plugins. This takes ~30–60 seconds on first run.
+Open `nvim` and lazy.nvim will auto-install all plugins.
+This takes ~30–60 seconds on first run.
 You will see a progress UI. Once done, restart nvim.
 
 ```bash
