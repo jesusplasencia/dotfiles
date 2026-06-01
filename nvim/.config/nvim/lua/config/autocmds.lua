@@ -1,0 +1,2 @@
+-- LazyVim handles yank highlight (TextYankPost) and other autocmds.
+-- Add project-specific autocmds here only when needed.
