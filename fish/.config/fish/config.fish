@@ -2,6 +2,12 @@
 # Fish shell configuration — Jesus Plasencia
 # Sections: PATH · Aliases · Prompt
 
+# ── SYSTEM ────────────────────────────────────────────────────────────────────
+# CachyOS system config (no-op on other distros)
+if test -f /usr/share/cachyos-fish-config/cachyos-config.fish
+    source /usr/share/cachyos-fish-config/cachyos-config.fish
+end
+
 # ── PATH ──────────────────────────────────────────────────────────────────────
 fish_add_path $HOME/.local/bin
 
@@ -36,4 +42,11 @@ alias reload 'source ~/.config/fish/config.fish'
 if command -v starship > /dev/null
     # Initialise starship prompt for fish
     starship init fish | source
+end
+
+# ── TOOLS ─────────────────────────────────────────────────────────────────────
+# pnpm
+set -gx PNPM_HOME "$HOME/.local/share/pnpm"
+if not string match -q -- "$PNPM_HOME/bin" $PATH
+    set -gx PATH "$PNPM_HOME/bin" $PATH
 end
