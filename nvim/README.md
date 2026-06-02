@@ -14,11 +14,11 @@ Neovim configuration based on [LazyVim](https://www.lazyvim.org/).
 
 ## Prerequisites
 
-- **Neovim ≥ 0.9** — `yay -S neovim`
+- **Neovim ≥ 0.9** — `paru -S neovim`
 - **git** — required by lazy.nvim to fetch plugins
 - **A Nerd Font** — for icons (e.g. JetBrainsMono Nerd Font)
-- **ripgrep** — `yay -S ripgrep` (used by LazyVim's fuzzy search)
-- **lazygit** — `yay -S lazygit` (used by LazyVim's git UI, optional)
+- **ripgrep** — `paru -S ripgrep` (used by LazyVim's fuzzy search)
+- **lazygit** — `paru -S lazygit` (used by LazyVim's git UI, optional)
 
 ## Stow setup
 

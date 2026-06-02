@@ -154,7 +154,7 @@ When suggesting new plugins:
 
 The bootstrap script must follow this order:
 1. Check OS (CachyOS/Arch-based assumed; warn if not).
-2. Install system packages via `pacman` / `yay` (with `--noconfirm` flag).
+2. Install system packages via `pacman` / `paru` (with `--noconfirm` flag).
 3. Install language runtimes (Node.js via `nvm`, etc.).
 4. Install cloud tools (AWS CLI, Terraform, tflint, tfsec, infracost).
 5. Run `stow` for all packages.
@@ -176,7 +176,7 @@ Always print a `[OK]`, `[SKIP]`, or `[ERROR]` prefix for each step.
 ## What Claude Should NOT Do
 
 - Do not suggest GUI tools or settings apps — everything is file-based.
-- Do not suggest AUR helpers other than `yay` unless explicitly asked.
+- Do not suggest AUR helpers other than `paru` unless explicitly asked.
 - Do not add aliases that shadow built-in commands without a comment and a way to bypass (e.g., `\ls` to escape an `ls` alias).
 - Do not suggest changes that require a display server restart to test without flagging that explicitly.
 - Do not commit machine-specific paths (e.g., `/home/jesus/`) — use `$HOME` always.

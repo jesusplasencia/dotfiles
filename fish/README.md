@@ -12,9 +12,9 @@ Fish shell configuration with aliases, PATH setup, and starship prompt integrati
 
 ## Prerequisites
 
-- **fish** — `yay -S fish`
-- **starship** — `yay -S starship` (prompt; skipped gracefully if absent)
-- **bat** — `yay -S bat` (used by the `cat` alias)
+- **fish** — `paru -S fish`
+- **starship** — `paru -S starship` (prompt; skipped gracefully if absent)
+- **bat** — `paru -S bat` (used by the `cat` alias)
 
 ## Stow setup
 
