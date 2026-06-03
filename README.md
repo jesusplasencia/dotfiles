@@ -47,17 +47,24 @@ bash scripts/setup-git.sh
 ### 5. Stow packages
 
 ```bash
-stow alacritty fish git hypr nvim
+stow alacritty zsh git hypr nvim
 # or stow */ to stow everything at once
 ```
 
-### 6. Post-install
+### 6. Bootstrap zsh plugins (no plugin manager)
 
-- Set fish as default shell: `chsh -s /bin/fish`
+```bash
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.config/zsh/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.config/zsh/plugins/zsh-syntax-highlighting
+```
+
+### 7. Post-install
+
+- Set zsh as default shell: `chsh -s /bin/zsh`
 - Restart or re-login for the shell change to take effect
 - Configure AWS SSO: `aws configure sso`
 - GitHub auth: `gh auth login`
-- Create `~/.config/fish/conf.d/local.fish` for API keys and secrets (gitignored)
+- Create `~/.config/zsh/conf.d/local.zsh` for API keys and secrets (gitignored)
 
 ---
 
@@ -65,8 +72,8 @@ stow alacritty fish git hypr nvim
 
 | Package      | What it configures                                    |
 |--------------|-------------------------------------------------------|
-| `alacritty/` | Terminal — font, opacity, fish shell                  |
-| `fish/`      | Fish shell — aliases, PATH, starship prompt           |
+| `alacritty/` | Terminal — font, opacity, zsh shell                   |
+| `zsh/`       | Zsh shell — aliases, PATH, starship prompt            |
 | `git/`       | Global gitconfig + aliases                            |
 | `hypr/`      | Hyprland, hyprpaper, keybinds, autostart              |
 | `nvim/`      | Neovim — LazyVim bootstrap, colorcolumn, tokyonight   |

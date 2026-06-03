@@ -18,4 +18,4 @@ size = 11.0
 history = 10000
 
 [terminal]
-shell = { program = "/bin/fish" }
+shell = { program = "/bin/zsh" }
