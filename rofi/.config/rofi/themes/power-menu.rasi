@@ -1,0 +1,56 @@
+/* Power Menu Theme */
+
+* {
+    bg:      #1e1e2e;
+    bg-alt:  #313244;
+    fg:      #cdd6f4;
+    accent:  #89b4fa;
+    urgent:  #f38ba8;
+    border:  #45475a;
+
+    background-color: transparent;
+    text-color:       @fg;
+}
+
+window {
+    background-color: @bg;
+    border:           2px solid;
+    border-color:     @border;
+    border-radius:    12px;
+    width:            280px;
+    padding:          16px;
+    location:         center;
+    anchor:           center;
+}
+
+mainbox {
+    background-color: transparent;
+    spacing:          8px;
+    children:         [ listview ];
+}
+
+listview {
+    background-color: transparent;
+    lines:            2;
+    columns:          1;
+    spacing:          6px;
+}
+
+element {
+    background-color: @bg-alt;
+    border-radius:    8px;
+    padding:          14px 20px;
+    spacing:          0;
+}
+
+element selected {
+    background-color: @accent;
+    text-color:       @bg;
+}
+
+element-text {
+    background-color: transparent;
+    font:             "JetBrainsMono Nerd Font 13";
+    vertical-align:   0.5;
+    horizontal-align: 0.5;
+}
