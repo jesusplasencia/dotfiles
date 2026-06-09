@@ -1,8 +1,11 @@
 -- Plugins — vim.pack.add clones from GitHub on first run, no-op after that
 vim.pack.add {
     "https://github.com/rebelot/kanagawa.nvim",
-	"https://github.com/stevearc/oil.nvim"
+	"https://github.com/stevearc/oil.nvim",
+	"https://github.com/christoomey/vim-tmux-navigator",
 }
+-- vim-tmux-navigator is Vimscript-only (no require), must be explicitly loaded
+vim.cmd('packadd vim-tmux-navigator')
 
 -- Editor
 vim.opt.tabstop = 4
@@ -31,5 +34,12 @@ require("kanagawa").setup({ background = { dark = "dragon" } })
 vim.cmd("colorscheme kanagawa-dragon")
 
 -- oil.nvim — filesystem as a buffer, fully unrestricted, shows hidden files
-require("oil").setup({ view_options = { show_hidden = true } })
+-- <C-l> disabled so vim-tmux-navigator can use it; refresh moved to gr
+require("oil").setup({
+	view_options = { show_hidden = true },
+	keymaps = {
+		["<C-l>"] = false,
+		["gr"] = "actions.refresh",
+	},
+})
 vim.keymap.set("n", "-", "<cmd>Oil<CR>", { desc = "Open parent directory" })

@@ -40,7 +40,7 @@ echo "--target=$HOME" > .stowrc
 ```bash
 sudo pacman -S \
   zsh git stow \
-  alacritty neovim starship \
+  alacritty neovim starship tmux \
   github-cli ripgrep fzf bat \
   pipewire wireplumber playerctl brightnessctl \
   waybar wofi dunst network-manager-applet \
@@ -53,7 +53,7 @@ sudo pacman -S \
 ```bash
 sudo dnf install \
   zsh git stow \
-  alacritty neovim starship \
+  alacritty neovim starship tmux \
   gh ripgrep fzf bat \
   pipewire wireplumber playerctl brightnessctl \
   waybar wofi dunst network-manager-applet \
@@ -128,10 +128,10 @@ From the repo root:
 
 ```bash
 # Full setup (Arch + Hyprland)
-stow zsh nvim alacritty git hypr
+stow zsh nvim alacritty git hypr tmux
 
 # Shell + dev only (Fedora Cosmic or any non-Hyprland system)
-stow zsh nvim alacritty git
+stow zsh nvim alacritty git tmux
 ```
 
 ---
@@ -197,7 +197,21 @@ bash /tmp/miniforge3.sh -b -p "$HOME/miniforge3"
 # Restart shell — conda.zsh in conf.d initializes it automatically
 ```
 
-### 4g. Auth
+### 4g. tmux — install TPM and plugins
+
+```bash
+# Clone TPM (Tmux Plugin Manager)
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+# Start tmux, then press Ctrl+b I to install all plugins
+tmux
+```
+
+First-launch sequence: `tmux` → `Ctrl+b I` → wait for plugins to install → done.
+
+After a reboot, run `tmux attach` to restore your previous session (tmux-continuum).
+
+### 4h. Auth
 
 ```bash
 gh auth login          # GitHub CLI
@@ -222,3 +236,7 @@ Run these after a fresh install to confirm everything is working:
 - [ ] `hyprctl version` (Arch only) → Hyprland running
 - [ ] Press `Print` → screenshot saved to `~/Pictures/Screenshots/`
 - [ ] `bat ~/.zshrc` → syntax highlighting confirms bat alias works
+- [ ] `tmux new -s test` → session opens, status bar shows kanagawa-dragon theme
+- [ ] `Ctrl+b |` → vertical split; `Ctrl+b -` → horizontal split
+- [ ] `Ctrl+h/j/k/l` → navigate between panes (seamless with nvim splits)
+- [ ] `Ctrl+b d` → detach; `tmux attach` → session restored
