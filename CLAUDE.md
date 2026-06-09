@@ -73,7 +73,7 @@ Before producing any output, ask yourself:
 │   └── .config/alacritty/
 │       └── alacritty.toml
 │
-├── nvim/                      ← Neovim (LazyVim-based)
+├── nvim/                      ← Neovim (vim.pack.add, minimal)
 │   └── .config/nvim/
 │       ├── init.lua
 │       └── lua/
@@ -108,7 +108,7 @@ Before producing any output, ask yourself:
 | Hyprland        | Wayland compositor / window manager  | `hypr/`         |
 | Alacritty       | GPU-accelerated terminal             | `alacritty/`    |
 | tmux            | Terminal multiplexer                 | `tmux/`         |
-| Neovim          | Editor (LazyVim starter)             | `nvim/`         |
+| Neovim          | Editor (vim.pack.add, minimal)       | `nvim/`         |
 | zsh + starship  | Shell + prompt                       | `zsh/`          |
 | GNU Stow        | Symlink manager                      | —               |
 | fzf             | Fuzzy finder (shell + vim)           | `zsh/`          |

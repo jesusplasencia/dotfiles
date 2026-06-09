@@ -76,7 +76,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.config/zsh/plu
 | `zsh/`       | Zsh shell — aliases, PATH, starship prompt            |
 | `git/`       | Global gitconfig + aliases                            |
 | `hypr/`      | Hyprland, hyprpaper, keybinds, autostart              |
-| `nvim/`      | Neovim — LazyVim bootstrap, colorcolumn, tokyonight   |
+| `nvim/`      | Neovim — vim.pack.add, kanagawa-dragon, oil, tmux nav |
 
 ---
 
