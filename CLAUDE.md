@@ -36,15 +36,15 @@ Before producing any output, ask yourself:
 - Never suggest editing symlinked files in `~/` — always edit the source inside the repo.
 
 ### Shell & Environment
-- Default shell is **fish**. Do not suggest bash/zsh-only constructs without a fish equivalent.
-- No `set -x` statements for secrets or tokens in `config.fish` — use a sourced local file (e.g. `~/.config/fish/conf.d/local.fish`, gitignored).
-- Keep `config.fish` readable: group by section (PATH, aliases, functions, completions, prompt).
+- Default shell is **zsh**. POSIX-compliant — prefer constructs that work across distros without modification.
+- No inline secrets or tokens in `.zshrc` — use a sourced local file (e.g. `~/.config/zsh/conf.d/local.zsh`, gitignored).
+- Keep `.zshrc` readable: group by section (PATH, aliases, functions, completions, prompt).
 - Never add `source` or `eval` patterns without a comment explaining what it does.
 
 ### Secrets & Privacy
 - **`.gitignore` is the first file touched** when adding any new package — check it before committing.
 - Never commit tokens, API keys, SSH private keys, or machine-specific secrets.
-- Files with credentials belong in `~/.config/fish/conf.d/local.fish` (gitignored), `~/.aws/credentials` (outside the repo), or a secrets manager — never in dotfiles.
+- Files with credentials belong in `~/.config/zsh/conf.d/local.zsh` (gitignored), `~/.aws/credentials` (outside the repo), or a secrets manager — never in dotfiles.
 - AWS CLI config (`~/.aws/config`) is safe to version; `~/.aws/credentials` is not.
 
 ### Idempotency
@@ -81,9 +81,9 @@ Before producing any output, ask yourself:
 ├── tmux/                      ← Terminal multiplexer
 │   └── .tmux.conf
 │
-├── fish/                      ← Shell config
-│   └── .config/fish/
-│       ├── config.fish
+├── zsh/                       ← Shell config
+│   ├── .zshrc
+│   └── .config/zsh/
 │       └── conf.d/
 │
 ├── git/                       ← Git globals
@@ -109,35 +109,28 @@ Before producing any output, ask yourself:
 | Alacritty       | GPU-accelerated terminal             | `alacritty/`    |
 | tmux            | Terminal multiplexer                 | `tmux/`         |
 | Neovim          | Editor (LazyVim starter)             | `nvim/`         |
-| fish + starship | Shell + prompt                       | `fish/`         |
+| zsh + starship  | Shell + prompt                       | `zsh/`          |
 | GNU Stow        | Symlink manager                      | —               |
-| fzf             | Fuzzy finder (shell + vim)           | `fish/`         |
+| fzf             | Fuzzy finder (shell + vim)           | `zsh/`          |
 | ripgrep         | Fast grep (used by Neovim/fzf)       | —               |
-| bat             | `cat` with syntax highlighting       | `fish/` (alias) |
-| yazi            | Terminal file manager                | `fish/` (alias) |
+| bat             | `cat` with syntax highlighting       | `zsh/` (alias)  |
+| yazi            | Terminal file manager                | `zsh/` (alias)  |
 | AWS CLI v2      | AWS access                           | `aws/`          |
-| Terraform       | IaC (shared infra)                   | `fish/` (PATH)  |
+| Terraform       | IaC (shared infra)                   | `zsh/` (PATH)   |
 | tflint          | Terraform linter                     | —               |
 | tfsec           | Terraform security scanner           | —               |
 | infracost       | Cloud cost estimation                | —               |
 
 ---
 
-## Neovim (LSP) Conventions
+## Neovim Conventions
 
-Claude Code should only suggest plugins that are compatible with **LazyVim**.
-The following LSP servers are expected (managed via Mason):
+This setup uses **Neovim 0.12's built-in `vim.pack.add`** — not LazyVim or any external plugin manager.
 
-- `terraform-ls` — Terraform
-- `yaml-language-server` — serverless.yml, CloudFormation, GitHub Actions
-- `bash-language-server` — shell scripts
-- `lua-language-server` — Neovim config itself
-- `json-lsp` — package.json, CDK, SAM
-
-When suggesting new plugins:
-- Always use LazyVim's plugin spec format (`{ "author/plugin", opts = {} }`).
-- Group additions in `~/.config/nvim/lua/plugins/` as separate files by concern (e.g., `lsp.lua`, `ui.lua`).
-- Never modify `init.lua` directly for plugin additions.
+- Add plugins via `vim.pack.add { "https://github.com/author/plugin" }` in `init.lua`.
+- Vimscript-only plugins (no Lua `require`) must be explicitly loaded with `vim.cmd('packadd <name>')`.
+- All config lives in a single `init.lua` — no `lua/plugins/` subdirectory.
+- Plugin lock file: `nvim-pack-lock.json` (auto-updated on first run).
 
 ---
 
@@ -158,7 +151,7 @@ The bootstrap script must follow this order:
 3. Install language runtimes (Node.js via `nvm`, etc.).
 4. Install cloud tools (AWS CLI, Terraform, tflint, tfsec, infracost).
 5. Run `stow` for all packages.
-6. Post-install messages: what to do manually (e.g., set fish as default shell, configure AWS SSO).
+6. Post-install messages: what to do manually (e.g., set zsh as default shell, configure AWS SSO).
 
 Always print a `[OK]`, `[SKIP]`, or `[ERROR]` prefix for each step.
 
@@ -186,7 +179,7 @@ Always print a `[OK]`, `[SKIP]`, or `[ERROR]` prefix for each step.
 
 ## Useful Aliases to Maintain
 
-```fish
+```zsh
 # Dotfiles management
 alias dotfiles='cd ~/dotfiles'
 alias stowit='cd ~/dotfiles && stow */'      # restow everything
@@ -206,9 +199,9 @@ alias tfd='terraform destroy'
 alias awsid='aws sts get-caller-identity'    # quick account check
 
 # Reload shell
-alias reload='source ~/.config/fish/config.fish'
+alias reload='source ~/.zshrc'
 ```
 
 ---
 
-*Last updated: 2026-05 — Jesus Plasencia*
+*Last updated: 2026-06 — Jesus Plasencia*
