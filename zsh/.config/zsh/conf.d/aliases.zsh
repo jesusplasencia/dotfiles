@@ -27,3 +27,20 @@ awsp() {
 
 # ── Shell ─────────────────────────────────────────────────────────────────────
 alias reload='source $ZDOTDIR/.zshrc'
+
+# Pull dotfiles, update system packages, and refresh tmux + nvim plugins
+upgrade() {
+    echo "==> dotfiles pull"
+    git -C ~/dotfiles pull --ff-only
+
+    echo "==> system packages"
+    paru -Syu --noconfirm
+
+    echo "==> tmux plugins"
+    ~/.tmux/plugins/tpm/bin/update_plugins all
+
+    echo "==> nvim packs"
+    nvim --headless "+lua vim.pack.update()" +qa 2>/dev/null || true
+
+    echo "==> done"
+}
