@@ -1,0 +1,73 @@
+/* Waybar — kanagawa-dragon palette
+   Dragon bg: #181616  surface: #1d1c19  overlay: #282727
+   fg: #c5c9c5         muted: #625e5a    accent: #9cabca
+   blue: #7fb4ca       green: #98bb6c    yellow: #e6c384
+   red: #c34043        orange: #ffa066
+*/
+
+* {
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 13px;
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: rgba(24, 22, 22, 0.92);
+    color: #c5c9c5;
+    border-radius: 10px;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+    background: transparent;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    color: #625e5a;
+    background: transparent;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+#workspaces button.active {
+    color: #7fb4ca;
+    background: rgba(127, 180, 202, 0.15);
+}
+
+#workspaces button:hover {
+    color: #c5c9c5;
+    background: rgba(197, 201, 197, 0.08);
+}
+
+#clock,
+#cpu,
+#memory,
+#network,
+#pulseaudio,
+#battery,
+#tray {
+    padding: 2px 10px;
+    color: #c5c9c5;
+    border-radius: 6px;
+    margin: 4px 2px;
+}
+
+#clock { color: #9cabca; }
+#cpu   { color: #98bb6c; }
+#memory { color: #e6c384; }
+
+#network.disconnected { color: #c34043; }
+#network.wifi         { color: #7fb4ca; }
+#network.ethernet     { color: #98bb6c; }
+
+#pulseaudio          { color: #ffa066; }
+#pulseaudio.muted    { color: #625e5a; }
+
+#battery             { color: #98bb6c; }
+#battery.warning     { color: #e6c384; }
+#battery.critical    { color: #c34043; }
+#battery.charging    { color: #9cabca; }
