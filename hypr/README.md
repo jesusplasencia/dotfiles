@@ -25,24 +25,34 @@ cp hypr/.config/hypr/monitors.conf.example hypr/.config/hypr/monitors.conf
 nvim hypr/.config/hypr/monitors.conf
 ```
 
-## Dual monitors with identical EDID
+## DP-1 black at cold boot — known hardware cause (not a config bug)
 
-Both displays here report the same make/model/serial, so Hyprland's boot-time output
-negotiation is fragile and **DP-1 can come up asleep** (black until you power the monitor
-off and on). `hyprland.conf` fixes this entirely on the compositor side:
+On this machine **DP-1 is an HDMI monitor connected through a cheap DP↔HDMI converter**
+(motherboard DisplayPort → converter → monitor HDMI). The other identical monitor is on
+the motherboard HDMI directly and works fine.
 
-```
-exec-once = sh -c 'sleep 2 && hyprctl keyword monitor "DP-1, disable" && sleep 1 && hyprctl reload'
-```
+At cold boot the converter reports **`DPCD caps 0x0`** (`dmesg | grep DP-1`), i.e. it does
+not expose its DisplayPort link capabilities in time. amdgpu therefore cannot train the DP
+link (`/sys/kernel/debug/dri/*/DP-1/link_settings` shows `Current: 0 0x0 0`) and the panel
+stays black until the monitor is **physically powered off/on**, which resets the converter
+and makes it re-assert HPD so amdgpu re-reads a valid DPCD.
 
-This disables DP-1, then `hyprctl reload` re-applies `monitors.conf` and re-enables it —
-a fresh modeset that wakes the panel, mimicking a physical off/on. `monitors.conf` stays
-the single source of truth for resolution/position.
+**This is a converter hardware limitation, not Hyprland.** The following were all tested
+and cannot fix it — the PC has no way to reset the converter:
 
-> A kernel-level disable (`video=DP-1:d` in the bootloader cmdline) is intentionally
-> **not** used: it force-offs the connector at KMS, so the panel stays asleep until a
-> hotplug even after Hyprland enables it — and it ties the fix to the bootloader. Keeping
-> the fix in `hyprland.conf` makes it portable to any distro (Arch, Fedora, …).
+- `hyprctl keyword monitor "DP-1, disable"` + `hyprctl reload`
+- `hyprctl dispatch dpms off/on DP-1`
+- debugfs `echo 0/1 > .../DP-1/trigger_hotplug`
+- forced retrain via `echo "4 0x14" > .../DP-1/link_settings`
+
+### Real fixes (in order)
+1. Use a monitor with a **native DisplayPort input** on the DP port (no converter).
+2. Use a **better active converter** (Parade/Synaptics chipset) with correct cold-boot HPD.
+3. Live with the manual monitor off/on.
+
+> Side note: removing `splash` from the kernel cmdline (`/etc/default/limine`, then
+> `sudo limine-update`) eliminated an unrelated `amdgpu dcn31_program_compbuf_size` boot
+> WARNING. That is a host-level change, not tracked by this repo.
 
 ## Wallpaper
 
