@@ -108,8 +108,9 @@ Before producing any output, ask yourself:
 │   └── .aws/
 │       └── config
 │
-└── scripts/                   ← Utility scripts (not stowed)
-    └── setup-git.sh
+└── scripts/                   ← Utility scripts (not stowed; symlinked into ~/.local/bin by install.sh)
+    ├── setup-git.sh
+    └── new-project.sh         ← bootstraps /mnt/WorkShop/<name> (Obsidian+Claude) → cmd: new-project
 ```
 
 ---

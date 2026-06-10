@@ -129,7 +129,26 @@ fi
 mkdir -p "$HOME/Pictures/Screenshots" "$HOME/Pictures/wallpapers"
 ok "Ensured ~/Pictures/Screenshots and ~/Pictures/wallpapers exist"
 
-# ── 8. DEFAULT SHELL ──────────────────────────────────────────────────────────
+# ── 8. USER SCRIPTS (~/.local/bin) ────────────────────────────────────────────
+# Expose utility scripts as global commands via symlink. ~/.local/bin is on PATH.
+BIN_DIR="$HOME/.local/bin"
+mkdir -p "$BIN_DIR"
+
+link_script() {  # link_script <script-name.sh> <command-name>
+    src="$SCRIPT_DIR/scripts/$1"
+    dst="$BIN_DIR/$2"
+    if [[ -L "$dst" && "$(readlink "$dst")" == "$src" ]]; then
+        skip "$2 already linked"
+    else
+        ln -sf "$src" "$dst"
+        chmod +x "$src"
+        ok "Linked $2 → $src"
+    fi
+}
+
+link_script new-project.sh new-project
+
+# ── 9. DEFAULT SHELL ──────────────────────────────────────────────────────────
 if [[ "$SHELL" == "/bin/zsh" ]]; then
     skip "zsh is already the default shell"
 else

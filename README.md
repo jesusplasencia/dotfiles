@@ -83,6 +83,27 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.config/zsh/plu
 
 ---
 
+## Scripts
+
+Utility scripts in `scripts/` are not stowed; `install.sh` symlinks them into `~/.local/bin`
+(on PATH) so they work as global commands. To link manually: `ln -sf "$PWD/scripts/new-project.sh" ~/.local/bin/new-project`.
+
+| Command       | What it does                                                              |
+|---------------|--------------------------------------------------------------------------|
+| `setup-git`   | Creates `~/.gitconfig.local` with your git identity (run once per machine)|
+| `new-project` | Bootstraps `/mnt/WorkShop/<name>` (Obsidian + Claude Code) and creates the GitHub repo |
+
+```bash
+new-project talker            # scaffold + private GitHub repo
+new-project talker --public   # public repo instead
+```
+
+`new-project` creates `CLAUDE.md`, a `docs/` folder (open as the Obsidian vault),
+root + `docs/` `.gitignore`, then `git init` and `gh repo create`. Override the
+workspace root with `WORKSHOP=/path new-project <name>`.
+
+---
+
 ## Stow cheatsheet
 
 | Command          | Effect                                        |
