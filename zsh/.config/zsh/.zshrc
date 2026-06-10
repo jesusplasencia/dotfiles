@@ -13,6 +13,7 @@ setopt INTERACTIVE_COMMENTS # allow # comments in interactive shell
 HISTFILE="$ZDOTDIR/.zsh_history"
 HISTSIZE=10000
 SAVEHIST=10000
+POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 
 # ── SYSTEM ────────────────────────────────────────────────────────────────────
 # CachyOS system config (no-op on other distros)
