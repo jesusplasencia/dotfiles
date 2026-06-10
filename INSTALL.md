@@ -45,6 +45,7 @@ sudo pacman -S \
   pipewire wireplumber playerctl brightnessctl \
   waybar wofi dunst network-manager-applet \
   hyprland hyprpaper \
+  rofi-wayland \
   grim slurp wl-clipboard
 ```
 
@@ -57,6 +58,7 @@ sudo dnf install \
   gh ripgrep fzf bat \
   pipewire wireplumber playerctl brightnessctl \
   waybar wofi dunst network-manager-applet \
+  rofi-wayland \
   grim slurp wl-clipboard
 ```
 
@@ -85,7 +87,6 @@ cd /tmp/paru && makepkg -si
 paru -S \
   ttf-jetbrains-mono-nerd \
   brave-bin \
-  yazi \
   aws-cli-v2 \
   terraform \
   tflint \
@@ -128,10 +129,10 @@ From the repo root:
 
 ```bash
 # Full setup (Arch + Hyprland)
-stow zsh nvim alacritty git hypr tmux
+stow zsh nvim alacritty git hypr tmux rofi waybar aws
 
 # Shell + dev only (Fedora Cosmic or any non-Hyprland system)
-stow zsh nvim alacritty git tmux
+stow zsh nvim alacritty git tmux rofi aws
 ```
 
 ---

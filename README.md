@@ -47,7 +47,7 @@ bash scripts/setup-git.sh
 ### 5. Stow packages
 
 ```bash
-stow alacritty zsh git hypr nvim
+stow alacritty zsh git hypr nvim tmux rofi waybar aws
 # or stow */ to stow everything at once
 ```
 
@@ -77,6 +77,9 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.config/zsh/plu
 | `git/`       | Global gitconfig + aliases                            |
 | `hypr/`      | Hyprland, hyprpaper, keybinds, autostart              |
 | `nvim/`      | Neovim — vim.pack.add, kanagawa-dragon, oil, tmux nav |
+| `rofi/`      | App launcher + power menu (theme, power-menu script)  |
+| `waybar/`    | Status bar — workspaces, clock, system stats          |
+| `aws/`       | AWS CLI config — SSO profile template (no credentials)|
 
 ---
 

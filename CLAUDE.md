@@ -66,8 +66,9 @@ Before producing any output, ask yourself:
 ├── hypr/                      ← Hyprland window manager
 │   └── .config/hypr/
 │       ├── hyprland.conf
-│       ├── hyprpaper.conf
-│       └── keybinds.conf
+│       ├── hyprpaper.conf.example
+│       ├── monitors.conf.example
+│       └── set-wallpaper.sh
 │
 ├── alacritty/                 ← Terminal emulator
 │   └── .config/alacritty/
@@ -76,14 +77,27 @@ Before producing any output, ask yourself:
 ├── nvim/                      ← Neovim (vim.pack.add, minimal)
 │   └── .config/nvim/
 │       ├── init.lua
-│       └── lua/
+│       └── nvim-pack-lock.json
 │
 ├── tmux/                      ← Terminal multiplexer
 │   └── .tmux.conf
 │
+├── rofi/                      ← App launcher / power menu
+│   └── .config/rofi/
+│       ├── themes/
+│       │   └── power-menu.rasi
+│       └── scripts/
+│           └── power-menu.sh
+│
+├── waybar/                    ← Status bar
+│   └── .config/waybar/
+│       ├── config.jsonc
+│       └── style.css
+│
 ├── zsh/                       ← Shell config
-│   ├── .zshrc
+│   ├── .zshenv
 │   └── .config/zsh/
+│       ├── .zshrc
 │       └── conf.d/
 │
 ├── git/                       ← Git globals
@@ -95,8 +109,7 @@ Before producing any output, ask yourself:
 │       └── config
 │
 └── scripts/                   ← Utility scripts (not stowed)
-    ├── install-tools.sh
-    └── update-all.sh
+    └── setup-git.sh
 ```
 
 ---
@@ -107,6 +120,8 @@ Before producing any output, ask yourself:
 |-----------------|--------------------------------------|-----------------|
 | Hyprland        | Wayland compositor / window manager  | `hypr/`         |
 | Alacritty       | GPU-accelerated terminal             | `alacritty/`    |
+| rofi            | App launcher + power menu            | `rofi/`         |
+| waybar          | Wayland status bar                   | `waybar/`       |
 | tmux            | Terminal multiplexer                 | `tmux/`         |
 | Neovim          | Editor (vim.pack.add, minimal)       | `nvim/`         |
 | zsh + starship  | Shell + prompt                       | `zsh/`          |
@@ -114,7 +129,6 @@ Before producing any output, ask yourself:
 | fzf             | Fuzzy finder (shell + vim)           | `zsh/`          |
 | ripgrep         | Fast grep (used by Neovim/fzf)       | —               |
 | bat             | `cat` with syntax highlighting       | `zsh/` (alias)  |
-| yazi            | Terminal file manager                | `zsh/` (alias)  |
 | AWS CLI v2      | AWS access                           | `aws/`          |
 | Terraform       | IaC (shared infra)                   | `zsh/` (PATH)   |
 | tflint          | Terraform linter                     | —               |
