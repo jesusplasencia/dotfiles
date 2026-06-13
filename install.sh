@@ -25,6 +25,7 @@ PACMAN_PKGS=(
     zsh git stow
     alacritty neovim starship tmux
     github-cli ripgrep fzf bat
+    bun
     pipewire wireplumber playerctl brightnessctl
     waybar wofi dunst network-manager-applet
     hyprland hyprpaper

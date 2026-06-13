@@ -34,3 +34,5 @@ for f in $ZDOTDIR/conf.d/*.zsh; do
     [[ -f $f ]] && source $f
 done
 
+# bun completions
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
