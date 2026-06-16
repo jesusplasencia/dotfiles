@@ -42,8 +42,9 @@
         "format":        "{icon} {volume}%",
         "format-muted":  "󰝟 ",
         "format-icons":  { "default": ["󰕿", "󰖀", "󰕾"] },
-        "on-click":      "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-        "scroll-step":   5
+        "on-click":       "pavucontrol",
+        "on-click-right":  "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "scroll-step":    5
     },
 
     "tray": {
