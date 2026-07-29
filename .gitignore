@@ -2,3 +2,5 @@ hypr/.config/hypr/monitors.conf
 hypr/.config/hypr/hyprpaper.conf
 .gitconfig.local
 .stowrc
+.claude/
+
