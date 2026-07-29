@@ -85,7 +85,7 @@ else
     skip ".stowrc already exists"
 fi
 
-STOW_PKGS=(zsh nvim alacritty git tmux hypr rofi waybar aws)
+STOW_PKGS=(zsh nvim alacritty git tmux hypr rofi waybar aws starship)
 ok "Stowing packages: ${STOW_PKGS[*]}"
 stow --restow "${STOW_PKGS[@]}"
 
